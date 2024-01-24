@@ -1,0 +1,8 @@
+<div class="m-5">
+  <button disabled class="btn btn-success mb-2">All products</button>
+  <div *ngFor="let category of categories$ | async" class="">
+    <button disabled class="btn btn-success mb-2">
+      {{ category }}
+    </button>
+  </div>
+</div>

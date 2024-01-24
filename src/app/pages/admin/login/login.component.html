@@ -1,0 +1,35 @@
+<div class="parent">
+  <div class="container">
+    <div class="left-section"></div>
+    <div class="right-section">
+      <div class="login-container">
+        <form class="login-form">
+          <h2 class="login-title"><i class="fas fa-user-circle"></i> Login</h2>
+          <div class="form-control">
+            <input
+              name="userName"
+              type="text"
+              [(ngModel)]="loginObj.userName"
+              placeholder="Username"
+              id="username"
+              required
+            />
+          </div>
+          <div class="form-control">
+            <input
+              name="password"
+              type="password"
+              [(ngModel)]="loginObj.password"
+              placeholder="Password"
+              id="password"
+            />
+          </div>
+          <i class="text-secondary small mb-2 d-flex justify-content-center"
+            >try Username "admin" and Password "12345"</i
+          >
+          <button type="button" (click)="onLogin()">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

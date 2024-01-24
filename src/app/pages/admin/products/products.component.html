@@ -1,0 +1,154 @@
+<div class="row m-5">
+  <div [ngClass]="isSidePanelVisible ? 'col-8' : 'col-12'">
+    <div class="card">
+      <div class="card-header bg-dark">
+        <div class="row">
+          <div class="col-6">
+            <div
+              class="bg-dark text-light d-flex align-center justify-content-between"
+            >
+              <button (click)="chooseCategory('All')" class="btn btn-light">
+                All products
+              </button>
+              <div *ngFor="let category of categoryList" class="">
+                <button
+                  (click)="chooseCategory(category)"
+                  class="btn btn-light"
+                >
+                  {{ category }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-end">
+            <button (click)="openSidePanel()" class="btn btn-sm btn-success">
+              Create New Product
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3" *ngFor="let product of productsList">
+            <div class="card product m-2">
+              <h4 class="p-1 text-center">{{ product.title }}</h4>
+              <b class="p-1 text-center">{{ product.price }} $</b>
+              <img
+                [src]="product.image"
+                class="card-img-top p-1"
+                [alt]="product.title"
+              />
+              <div class="card-body p-1 text-center">
+                <i>{{ product.category }}</i>
+                <p class="card-text text">
+                  {{ product.description }}
+                </p>
+              </div>
+              <div class="row mt-2 p-2">
+                <button
+                  class="btn btn-primary col-5 mx-auto"
+                  (click)="onEdit(product)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-dark col-5 mx-auto"
+                  (click)="onDelete(product)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4" *ngIf="isSidePanelVisible">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <div class="row">
+          <div class="col-6">New Product</div>
+          <div class="col-6 text-end">
+            <button (click)="closeSidePanel()" class="btn btn-sm btn-success">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <label for="">title</label>
+            <input
+              type="text"
+              [(ngModel)]="productObj.title"
+              class="form-control"
+            />
+          </div>
+
+          <div class="col-6">
+            <label for="">price</label>
+            <input
+              type="text"
+              [(ngModel)]="productObj.price"
+              class="form-control"
+            />
+          </div>
+
+          <div class="col-6">
+            <label for="">category</label>
+            <select [(ngModel)]="productObj.category" class="form-control">
+              <option *ngFor="let category of categoryList" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label for="">image</label>
+            <input
+              type="text"
+              [(ngModel)]="productObj.image"
+              class="form-control"
+            />
+          </div>
+
+          <div class="col-12">
+            <label for="">description</label>
+            <textarea
+              rows="4"
+              [(ngModel)]="productObj.description"
+              class="form-control"
+            >
+            </textarea>
+          </div>
+          <div class="mt-2 row">
+            <div class="col-6">
+              <button *ngIf="productObj.id === 0" class="btn btn-primary">
+                Reset
+              </button>
+            </div>
+            <div class="col-6">
+              <button
+                class="btn btn-success"
+                *ngIf="productObj.id === 0"
+                (click)="clickCreateProduct()"
+              >
+                Create Product
+              </button>
+              <button
+                class="btn btn-success"
+                *ngIf="productObj.id !== 0"
+                (click)="clickUpdateProduct()"
+              >
+                Update Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
